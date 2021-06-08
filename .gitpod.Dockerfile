@@ -66,12 +66,5 @@ RUN mkdir $GCS_DIR \
     && curl -fsSL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-303.0.0-linux-x86_64.tar.gz \
     | tar -xzvC /opt \
     && /opt/google-cloud-sdk/install.sh --quiet --usage-reporting=false --bash-completion=true \
-    --additional-components docker-credential-gcr alpha beta \
-    # needed for access to our private registries
-    && docker-credential-gcr configure-docker
-
-ARG OP_VERSION=v1.9.1
-RUN curl --out /tmp/op.zip https://cache.agilebits.com/dist/1P/op/pkg/$OP_VERSION/op_linux_amd64_$OP_VERSION.zip && \
-    unzip /tmp/op.zip && \
-    mv /tmp/op /usr/local/bin/op && \
-    chmod +x /usr/local/bin/op
+    --additional-components alpha beta
+    
